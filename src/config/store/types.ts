@@ -1,9 +1,9 @@
 import { Action as ReduxAction } from 'redux';
 
-export type AppActionTypes = '';
+export type AppActionTypes = string;
 
 export interface AppState {
-	
+
 }
 
 export interface AppAction extends ReduxAction<AppActionTypes> {
