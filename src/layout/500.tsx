@@ -21,12 +21,13 @@ export default class ErrorBoundary extends Component<Props, State> {
 	render() {
 		const { children } = this.props;
 		const { hasError } = this.state;
-		if (hasError) return (
-			<>
-				<h1>500 Internal Server Error</h1>
-				<p>We did something wrong. We'll be notified and we'll look into it.</p>
-			</>
-		);
+		if (hasError)
+			return (
+				<>
+					<h1>500 Internal Server Error</h1>
+					<p>We did something wrong. We'll be notified and we'll look into it.</p>
+				</>
+			);
 		return children;
 	}
 }

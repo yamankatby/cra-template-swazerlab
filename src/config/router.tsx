@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route, RouteProps, Switch } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import { Route, RouteProps, Router, Switch } from 'react-router-dom';
 
 import { Layout, NotFound } from '../layout';
 
@@ -11,6 +12,7 @@ export interface RouteConfig extends RouteProps {
 
 export const routes: { [name in RouteName]: RouteConfig } = {};
 
+export const history = createBrowserHistory({});
 export default () => {
 	const renderRoutes = Object.entries(routes).map(([key, config]) => {
 		const ThePageComponent = config.component as any;
@@ -22,11 +24,11 @@ export default () => {
 		return (<Route key={key} {...config} component={component} />);
 	});
 	return (
-		<BrowserRouter>
+		<Router history={history}>
 			<Switch>
 				{renderRoutes}
 				<Route path='/*' component={NotFound} />
 			</Switch>
-		</BrowserRouter>
+		</Router>
 	);
 };
