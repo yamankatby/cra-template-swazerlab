@@ -1,3 +1,7 @@
 import { combineReducers } from 'redux';
 
-export default combineReducers({});
+import services from '../../processes/services/logic/reducers';
+
+export default combineReducers({
+	services,
+});
