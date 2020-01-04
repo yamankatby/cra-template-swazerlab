@@ -14,6 +14,7 @@ if (process.env.NODE_ENV === 'development') {
 			predicate: (_, action: AppAction) => action.silent !== true,
 		}),
 	);
+	require('axios-response-logger');
 }
 
 export const store = createStore(reducers, applyMiddleware(...middlewares));
