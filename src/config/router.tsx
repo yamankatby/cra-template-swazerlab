@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, RouteProps, Switch } from 'react-router-dom';
 
-import NotFound from '../layout/404';
+import { Layout, NotFound } from '../layout';
 
 export type RouteName = string;
 
@@ -13,9 +13,14 @@ export const routes: { [name in RouteName]: RouteConfig } = {};
 
 export default () => {
 	const renderRoutes = Object.entries(routes).map(([key, config]) => {
-		return <Route key={key} {...config} />;
+		const ThePageComponent = config.component as any;
+		const component = () => (
+			<Layout routeName={key} routeConfig={config} layoutConfig={ThePageComponent.layoutConfig}>
+				<ThePageComponent />
+			</Layout>
+		);
+		return (<Route key={key} {...config} component={component} />);
 	});
-
 	return (
 		<BrowserRouter>
 			<Switch>
